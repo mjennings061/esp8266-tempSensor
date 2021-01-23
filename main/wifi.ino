@@ -1,0 +1,27 @@
+// Attempt to connect to WiFi
+void connectWiFi(){
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED){
+    Serial.print(F("."));
+    digitalWrite(LEDPIN, 0);
+    delay(250);
+    digitalWrite(LEDPIN, 1);
+    delay(250);
+  }
+  // Display a notification that the connection is successful. 
+  Serial.println("Connected");
+  digitalWrite(LEDPIN, 1);
+}
+
+
+// Send data to the ThingSpeak server (two fields)
+void postData(float field1Data, float field2Data) {
+  // Write to ThingSpeak
+  Serial.println(F("Sending data..."));
+  ThingSpeak.setField(1,field1Data);
+  ThingSpeak.setField(2,field2Data);
+  ThingSpeak.writeFields(myChannelNumber, myWriteAPIKey);
+  Serial.println(F("... sent!\n"));
+  delay(1000);
+  client.stop();
+}
