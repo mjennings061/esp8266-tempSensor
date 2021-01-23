@@ -17,7 +17,6 @@
 
 #define LEDPIN D4       //inbuilt LED pin
 #define DHTPIN D6       //DHT sensor pin
-#define MPIN A0         //moisture sensor analog pin (GPIO4)
 #define DHTTYPE DHT11   // Type of sensor is a DHT11
 
 // Sensor wiring and usage:
@@ -26,11 +25,10 @@ DHT_Unified dht(DHTPIN, DHTTYPE); //declare DHT sensor object
 
 /////// FUNCTION DECLARATIONS ///////
 void initDHT(void);         //initialise the DHT11
-float getMoisture(int pin); //get moisture value from capacitive sensor in percent
 float getTemp(void);        //get temperature from the DHT11
 float getHumid(void);       //get relative humidity from the DHT11
 void connectWiFi(void);     //wait for wifi connection
-void postData(float field1Data, float field2Data, float field3Data); //send data to Thingspeak
+void postData(float field1Data, float field2Data); //send data to Thingspeak
 
 /////// GLOBAL VARIABLES ///////
 // Network information
@@ -54,7 +52,6 @@ void setup() {
   initDHT();
   connectWiFi();
   ThingSpeak.begin(client);
-  
 }
 
 void loop() {
@@ -67,10 +64,9 @@ void loop() {
   if((millis() - old_ms) > loopTime){
     old_ms = millis(); //update the "last" timestamp
     digitalWrite(LEDPIN, 0);
-    float moisture = getMoisture(MPIN); //get the moisture in percent
     float tem = getTemp();  //get the temperature from the DHT11
     float hum = getHumid(); //get the relative humidity from the DHT11
-    postData(moisture, tem, hum); //transmit data to thingspeak
+    postData(tem, hum); //transmit data to thingspeak
     digitalWrite(LEDPIN, 1);
   }
 }

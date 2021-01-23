@@ -12,12 +12,11 @@ void connectWiFi(){
   digitalWrite(LEDPIN, 1);
 }
 
-void postData(float field1Data, float field2Data, float field3Data) {
+void postData(float field1Data, float field2Data) {
   // Write to ThingSpeak
   Serial.println(F("Sending data..."));
   ThingSpeak.setField(1,field1Data);
   ThingSpeak.setField(2,field2Data);
-  ThingSpeak.setField(3,field3Data);
   ThingSpeak.writeFields(myChannelNumber, myWriteAPIKey);
   Serial.println(F("... sent!\n"));
   delay(1000);
