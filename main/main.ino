@@ -1,7 +1,10 @@
 /* ESP8266-based data logger
  * Author: Michael Jennings
+ * https://github.com/mjennings061/esp8266-tempSensor
+ * 
  * To-do
  * - Add Wifi config via USB
+ * - Take multiple readings and post the median
  * - Add low power mode
  * - Low power wakeup timer
 */
@@ -38,7 +41,7 @@ const char * myWriteAPIKey = "V8K703OF9AF96BHK";
 // Timer variables
 unsigned long delayMS;
 unsigned long old_ms = 0;
-unsigned long loopTime = 30000;
+unsigned long loopTime = 30000;   // How often to send data (30000ms minimum)
 unsigned long lastConnectionTime;
 
 

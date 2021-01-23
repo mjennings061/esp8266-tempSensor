@@ -1,3 +1,4 @@
+// setup the DHT sensor
 void initDHT(void){
   // Initialize device.
   dht.begin();
@@ -28,6 +29,7 @@ void initDHT(void){
 }
 
 
+// Return the current temperature in degrees C
 float getTemp(void){
   // Get temperature event and print its value.
   sensors_event_t event;
@@ -45,6 +47,7 @@ float getTemp(void){
 }
 
 
+// Return the current humidity in % saturation
 float getHumid(void){
   // Get humidity event and print its value.
   sensors_event_t event;

@@ -1,3 +1,4 @@
+// Attempt to connect to WiFi
 void connectWiFi(){
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED){
@@ -13,6 +14,7 @@ void connectWiFi(){
 }
 
 
+// Send data to the ThingSpeak server (two fields)
 void postData(float field1Data, float field2Data) {
   // Write to ThingSpeak
   Serial.println(F("Sending data..."));
