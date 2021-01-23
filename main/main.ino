@@ -1,13 +1,9 @@
 /* ESP8266-based data logger
  * Author: Michael Jennings
  * To-do
+ * - Add Wifi config via USB
  * - Add low power mode
  * - Low power wakeup timer
- * 
- * Moisture levels
- * 0 to 340 (0-31%) dry soil
- * 341 to 700 (32-73%) humid soil
- * 701 to 1023 (74-100%) in water
 */
 
 #include <ESP8266WiFi.h>
@@ -37,13 +33,14 @@ char password[] = "bjmw3BhNcrjs";
 WiFiClient client;
 
 // ThingSpeak settings
-unsigned long myChannelNumber = 1081009;
-const char * myWriteAPIKey = "D3OJ6EMLX6PP244E";
+unsigned long myChannelNumber = 1289133;
+const char * myWriteAPIKey = "V8K703OF9AF96BHK";
 // Timer variables
 unsigned long delayMS;
 unsigned long old_ms = 0;
 unsigned long loopTime = 30000;
 unsigned long lastConnectionTime;
+
 
 void setup() {
   Serial.begin(115200);
@@ -53,6 +50,7 @@ void setup() {
   connectWiFi();
   ThingSpeak.begin(client);
 }
+
 
 void loop() {
   // In each loop, make sure there is an Internet connection.

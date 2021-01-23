@@ -12,6 +12,7 @@ void connectWiFi(){
   digitalWrite(LEDPIN, 1);
 }
 
+
 void postData(float field1Data, float field2Data) {
   // Write to ThingSpeak
   Serial.println(F("Sending data..."));

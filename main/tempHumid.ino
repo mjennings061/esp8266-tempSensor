@@ -27,6 +27,7 @@ void initDHT(void){
   delayMS = sensor.min_delay / 1000;
 }
 
+
 float getTemp(void){
   // Get temperature event and print its value.
   sensors_event_t event;
@@ -42,6 +43,7 @@ float getTemp(void){
     return event.temperature;
   }
 }
+
 
 float getHumid(void){
   // Get humidity event and print its value.
